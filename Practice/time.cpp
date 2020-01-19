@@ -12,13 +12,14 @@ class test
     private:
         int y;
         std::string dog;
-}*east;
+};
 
 struct dracula
 {
     public:
         std::string mine;
-}*fuck;
+
+};
 
 void test::hello()
 {
@@ -28,16 +29,11 @@ void test::hello()
 
 size_t test::dunno()
 {
-    y = 0;
     return y;
 }
 
 int main(int argc, char *argv[])
 {
     test dont;
-    east -> x = 1;
-    echo ((*east).x);
-    fuck -> mine = "Fuck";
-
     return 0;
 }
