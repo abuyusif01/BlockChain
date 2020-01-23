@@ -17,15 +17,21 @@ class Person
         string getCountry();
         string gettimeStamp();
         string getHash(Person person);
-        void setName(string name);
+        void setName(string Name);
         void setdateOfBirth(string dateOfBirth);
         void setCountry(string count);
         void settimeStamp(string timeStamp);
         void setHash(Person person, string PrevPersonHash);
         void addPerson(Person person, std::vector<Person> &PersonList);
-        Person(){};
-        Person( string Name, string dateOfBirth,string Country, string timeStamp, string PrevPersonHash);
+        bool isChainValid(string Hash, string PrevPersonHash);
+        Person();
+        Person(string Name, string dateOfBirth, string Country, string timeStamp, string PrevPersonHash);
 }person_default;
+
+Person::Person()
+{ 
+    this -> setHash(person_default, this->PrevPersonHash);
+};
 
 Person::Person(string Name,  string dateOfBirth,  string Country,  string timeStamp, string PrevPersonHash)
 { 
@@ -34,13 +40,13 @@ Person::Person(string Name,  string dateOfBirth,  string Country,  string timeSt
     this -> Country = Country;
     this -> timeStamp = timeStamp;
     this -> PrevPersonHash = PrevPersonHash;
-    this->setHash(person_default, this->PrevPersonHash);
+    this -> setHash(person_default, this->PrevPersonHash);
 }
 
 // Functions
-void Person::setName( string name)
+void Person::setName( string Name)
 { 
-    this -> Name = name;
+    this -> Name = Name;
 }
 
 string Person::getName()
