@@ -1,5 +1,7 @@
 #include <iostream>
 #include <ctime>
+#include <vector>
+#include <sqlite3.h>
 #define echo(x)std::cout<<x<<std::endl
 
 class test
@@ -34,6 +36,16 @@ size_t test::dunno()
 
 int main(int argc, char *argv[])
 {
-    test dont;
+    sqlite3 *db;
+    test m;
+    sqlite3_open("Dracula.db",&db);
+    std::cout<<db<<"\t";
+    std::cout<<&db<<"\t";
+    if (0)
+    {
+        std::cout<<"Cannot: "<<sqlite3_errmsg(db);
+        return(0);
+    }
+    sqlite3_close(db);
     return 0;
 }

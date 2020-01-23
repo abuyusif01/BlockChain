@@ -1,6 +1,6 @@
 compile:
-	g++ time.cpp -o time
-	@./time
+	g++ Main.cpp -lsqlite3 -o main
+	@./main
 
 remove:
-	rm time
+	rm main
