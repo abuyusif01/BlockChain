@@ -1,3 +1,5 @@
+#include <iostream>
+#include <vector>
 #pragma once
 using std::string;
 
@@ -5,99 +7,25 @@ class Person
 { 
     private:
         string Name;
-        string dateOfBirth;
-        string Country;
-        string timeStamp;
+        string Gender;
         string Hash;
-        string PrevPersonHash;
+        string PrevHash;
 
     public:
+        //getters
         string getName();
-        string getdateOfBirth();
-        string getCountry();
-        string gettimeStamp();
-        string getHash(Person person);
+        string getGender();
+        string getHash();
+        string getPrevHash();
+
+        //setters
+        void setHash();
+        void update();
         void setName(string Name);
-        void setdateOfBirth(string dateOfBirth);
-        void setCountry(string count);
-        void settimeStamp(string timeStamp);
-        void setHash(Person person, string PrevPersonHash);
+        void setGender(string Gender);
         void addPerson(Person person, std::vector<Person> &PersonList);
-        bool isChainValid(string Hash, string PrevPersonHash);
+
+        //Constructors
         Person();
-        Person(string Name, string dateOfBirth, string Country, string timeStamp, string PrevPersonHash);
+        Person(Person PrevPerson, string Name, string Gender);
 }person_default;
-
-Person::Person()
-{ 
-    this -> setHash(person_default, this->PrevPersonHash);
-};
-
-Person::Person(string Name,  string dateOfBirth,  string Country,  string timeStamp, string PrevPersonHash)
-{ 
-    this -> Name =  Name;
-    this -> dateOfBirth = dateOfBirth;
-    this -> Country = Country;
-    this -> timeStamp = timeStamp;
-    this -> PrevPersonHash = PrevPersonHash;
-    this -> setHash(person_default, this->PrevPersonHash);
-}
-
-// Functions
-void Person::setName( string Name)
-{ 
-    this -> Name = Name;
-}
-
-string Person::getName()
-{
-    return this->Name;
-}
-
-void Person::setCountry(string Country)
-{
-    this->Country = Country;
-}
-
-string Person::getCountry()
-{
-    return this->Country;
-}
-
-void Person::setdateOfBirth(string dateOfBirth)
-{
-    this->dateOfBirth = dateOfBirth;
-}
-
-string Person::getdateOfBirth()
-{
-    return this->dateOfBirth;
-}
-
-void Person::settimeStamp(string timeStamp)
-{
-    this->timeStamp = timeStamp;
-}
-
-string Person::gettimeStamp()
-{
-    return this->timeStamp;
-}
-void Person::setHash(Person person, string PrevPersonHash)
-{
-    std::hash<std::string> Hashed;
-    string Hash = this->getName() + this->getdateOfBirth() + this->getCountry() + 
-    this->gettimeStamp() + this -> PrevPersonHash;
-    size_t final_hash = (Hashed(Hash)>>3);
-    this->Hash = std::to_string(final_hash);
-}
-
-string Person::getHash(Person person)
-{
-    return this->Hash;
-}
-
-void Person::addPerson(Person person, std::vector<Person> &PersonList)
-{
-    PersonList.push_back(person);
-}
