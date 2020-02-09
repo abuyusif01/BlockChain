@@ -1,24 +1,19 @@
-#include "iostream"
-#include "vector"
 #include "Person.cpp"
+#include "iostream"
 #include "sha256.cpp"
+#include "vector"
 #define line std::cout << std::endl
 #define echo(x) std::cout << x << std::endl
 
-void addPerson(Person person, std::vector<Person> &personVector)
-{
-    personVector.push_back(person);
-}
+void addPerson(Person person, std::vector<Person>& personVector) { personVector.push_back(person); }
 
-bool isChainValid(Person &person, std::vector<Person> &personVector)
+bool isChainValid(Person& person, std::vector<Person>& personVector)
 {
-        for (size_t i = 0; i < personVector.size() - 1; i ++)
-        {
-            if (personVector.at(i).getHash() == personVector.at(i).getPrevHash())
-            {
-                return true;
-            }
+    for (size_t i = 0; i < personVector.size() - 1; i++) {
+        if (personVector.at(i).getHash() == personVector.at(i).getPrevHash()) {
+            return true;
         }
+    }
     return false;
 }
 
@@ -31,8 +26,8 @@ int main(int argc, const char** argv)
     Genesis.setGender("Genesi");
     Genesis.setHash();
 
-    Person First0 = Person(Genesis,"dracula","male");
-    Person First1 = Person(First0,"dunno","dunno");
+    Person First0 = Person(Genesis, "dracula", "male");
+    Person First1 = Person(First0, "dunno", "dunno");
 
     addPerson(Genesis, personVector);
     addPerson(First0, personVector);
@@ -40,10 +35,8 @@ int main(int argc, const char** argv)
     addPerson(First1, personVector);
     addPerson(First1, personVector);
     static size_t valid = 0;
-    for (int i = 1; i < personVector.size() - 1; i++)
-    {
-        if (personVector.at(i).getHash() == personVector.at(i+1).getPrevHash())
-        {
+    for (int i = 1; i < personVector.size() - 1; i++) {
+        if (personVector.at(i).getHash() == personVector.at(i + 1).getPrevHash()) {
             valid++;
         }
     }
